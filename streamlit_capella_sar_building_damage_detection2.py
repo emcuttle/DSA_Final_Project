@@ -40,8 +40,8 @@ from shapely.geometry import box
 from rasterio.errors import RasterioIOError
 
 # Mount Google Drive:
-from google.colab import drive
-drive.mount('/content/drive/')
+# from google.colab import drive
+# drive.mount('/content/drive/')
 
 # Define functions:
 
