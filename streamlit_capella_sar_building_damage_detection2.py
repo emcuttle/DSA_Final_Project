@@ -1016,7 +1016,7 @@ print("\nTraining complete. Model and results are saved in the 'runs' directory.
 # Save runs data to Google Drive:
 # drive.mount('/content/drive')
 
-!cp -r /content/runs "/content/drive/MyDrive/yolo_sar_building_damage_detection"
+# !cp -r /content/runs "/content/drive/MyDrive/yolo_sar_building_damage_detection"
 
 from IPython.display import Image as i
 
