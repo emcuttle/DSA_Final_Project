@@ -1637,18 +1637,49 @@ merged_df = pd.merge(gdf_fully_inside, df[['id', 'prediction_class']], on='id')
 
 merged_df.head()
 
-merged_df.explore(column='prediction_class')
+# merged_df.explore(column='prediction_class')
 
-# Imports for streamlit
-import streamlit as st
-from streamlit_folium import st_folium
-import geopandas as gpd
+# # Imports for streamlit
+# import streamlit as st
+# from streamlit_folium import st_folium
+# import geopandas as gpd
 
-# Create a folium map
-m = merged_df.explore(column='prediction_class', legend=True)
+# # Create a folium map
+# m = merged_df.explore(column='prediction_class', legend=True)
 
-# Display the map in Streamlit
+# # Display the map in Streamlit
+# st.title("Marshall Wildfire Building Damage Map")
+
+# # st_folium renders the folium map
+# st_data = st_folium(m, width=700, height=500)
+
+
+# Compute map center
+map_center = [merged_df.geometry.centroid.y.mean(), merged_df.geometry.centroid.x.mean()]
+m = folium.Map(location=map_center, zoom_start=15)
+
+# Add polygons with color based on prediction_class
+for _, row in merged_df.iterrows():
+    geojson = row['geometry'].__geo_interface__
+    folium.GeoJson(
+        geojson,
+        tooltip=f"ID: {row['id']}<br>Prediction: {row['prediction_class']}",
+        style_function=lambda feature, cls=row['prediction_class']: {
+            'fillColor': 'red' if cls == 1 else 'green',
+            'color': 'black',
+            'weight': 1,
+            'fillOpacity': 0.5
+        }
+    ).add_to(m)
+
+# ------------------------------
+# 5️⃣ Display map in Streamlit
+# ------------------------------
 st.title("Marshall Wildfire Building Damage Map")
+st_data = st_folium(m, width=800, height=600)
 
-# st_folium renders the folium map
-st_data = st_folium(m, width=700, height=500)
+# ------------------------------
+# 6️⃣ Optional: Display full table
+# ------------------------------
+st.subheader("Full Predictions Table")
+st.dataframe(merged_df[['id', 'prediction_class']])
