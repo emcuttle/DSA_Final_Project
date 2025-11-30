@@ -2,7 +2,6 @@ streamlit
 streamlit-folium
 numpy
 pandas
-geopandas
 shapely
 fiona
 rasterio
@@ -13,3 +12,6 @@ matplotlib
 PyYAML
 ultralytics
 scikit-learn
+geopandas>=0.14
+folium>=0.18
+branca>=0.6
