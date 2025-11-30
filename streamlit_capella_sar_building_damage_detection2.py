@@ -17,7 +17,7 @@ Original file is located at
 """
 
 # Pip install modules:
-!pip install fiona rasterio folium matplotlib mapclassify optuna ultralytics -q
+# !pip install fiona rasterio folium matplotlib mapclassify optuna ultralytics -q
 
 # Imports:
 import os
