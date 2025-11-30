@@ -625,7 +625,7 @@ if layer_names:
 # # Display the first few rows to verify
 # print("\nGeoDataFrame loaded successfully:")
 
-gdf_mx.explore()
+# gdf_mx.explore()
 
 # Define AOI:
 
@@ -643,7 +643,7 @@ gdf_aoi = gpd.GeoDataFrame.from_features(
     crs=gdf_mx.crs  # Ensure the CRS is carried over
 )
 
-gdf_aoi.explore()
+# gdf_aoi.explore()
 
 # Create label column:
 gdf_mx['label'] = gdf_mx['damaged']
