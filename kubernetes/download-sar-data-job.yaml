@@ -1,0 +1,38 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: sar-footprint-download
+spec:
+  template:
+    spec:
+      containers:
+      - name: downloader
+        image: python:3.10-slim
+        command: ["/bin/bash", "-c"]
+        args:
+          - |
+            apt-get update && apt-get install -y wget unzip;
+            mkdir -p /data/sar;
+            cd /data/sar;
+
+            echo "Downloading SAR dataset..."
+            wget -O sar.zip "YOUR_SAR_URL"
+
+            echo "Downloading building footprints..."
+            wget -O footprints.zip "YOUR_FOOTPRINT_URL"
+
+            echo "Extracting..."
+            unzip sar.zip
+            unzip footprints.zip
+
+            echo "Done."
+        volumeMounts:
+        - mountPath: /data
+          name: pvc-storage
+
+      restartPolicy: Never
+      volumes:
+      - name: pvc-storage
+        persistentVolumeClaim:
+          claimName: YOUR_PVC_NAME
+  backoffLimit: 3
