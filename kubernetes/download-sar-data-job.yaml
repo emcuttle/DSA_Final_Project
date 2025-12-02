@@ -34,5 +34,5 @@ spec:
       volumes:
       - name: pvc-storage
         persistentVolumeClaim:
-          claimName: YOUR_PVC_NAME
+          claimName: ecc7r-pv
   backoffLimit: 3
