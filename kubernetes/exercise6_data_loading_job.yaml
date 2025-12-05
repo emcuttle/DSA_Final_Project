@@ -1,18 +1,18 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: exercise6-data-loading
+  name: exercise6-dataset-validation
 spec:
   template:
     spec:
       containers:
-      - name: data-loading
+      - name: dataset-validation
         image: python:3.9-slim
         command: ["bash", "-c"]
         args:
           - |
             echo "============================";
-            echo "Project: SAR Wildfire Building Damage Detection Model";
+            echo "Project Title: SAR Wildfire Building Damage Detection Model";
             echo "Dataset Source URL:";
             echo "SAR: https://capella-open-data.s3.amazonaws.com/data/2025/1/11/CAPELLA_C14_SS_GEO_HH_20250111163649_20250111163705/CAPELLA_C14_SS_GEO_HH_20250111163649_20250111163705.tif";
             echo "Palisades Fire Footprints: https://data.humdata.org/dataset/30768ff0-289b-4fda-96d9-7209243c984d/resource/9650c5fe-c29b-429e-81e3-537688a74f60/download/maxar_palisades_1050010040277500_damage_predictions.gpkg";
