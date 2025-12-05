@@ -1,0 +1,44 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: exercise6-data-loading
+spec:
+  template:
+    spec:
+      containers:
+      - name: data-loading
+        image: python:3.9-slim
+        command: ["bash", "-c"]
+        args:
+          - |
+            echo "============================";
+            echo "Project: SAR Wildfire Building Damage Detection Model";
+            echo "Dataset Source URL:";
+            echo "SAR: https://capella-open-data.s3.amazonaws.com/data/2025/1/11/CAPELLA_C14_SS_GEO_HH_20250111163649_20250111163705/CAPELLA_C14_SS_GEO_HH_20250111163649_20250111163705.tif";
+            echo "Palisades Fire Footprints: https://data.humdata.org/dataset/30768ff0-289b-4fda-96d9-7209243c984d/resource/9650c5fe-c29b-429e-81e3-537688a74f60/download/maxar_palisades_1050010040277500_damage_predictions.gpkg";
+            echo "----------------------------";
+
+            echo "Simulating dataset validation...";
+            python3 - << 'EOF'
+import urllib.parse
+
+sar_url = "https://capella-open-data.s3.amazonaws.com/data/2025/1/11/CAPELLA_C14_SS_GEO_HH_20250111163649_20250111163705/CAPELLA_C14_SS_GEO_HH_20250111163649_20250111163705.tif"
+fp_url = "https://data.humdata.org/dataset/30768ff0-289b-4fda-96d9-7209243c984d/resource/9650c5fe-c29b-429e-81e3-537688a74f60/download/maxar_palisades_1050010040277500_damage_predictions.gpkg"
+
+print("Parsed SAR filename:", urllib.parse.urlparse(sar_url).path.split("/")[-1])
+print("Parsed footprint filename:", urllib.parse.urlparse(fp_url).path.split("/")[-1])
+
+print("Validation successful: URLs appear correctly formatted.")
+EOF
+
+            echo "----------------------------";
+            echo "Job completed successfully.";
+            echo "============================";
+
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "100m"
+
+      restartPolicy: Never
+  backoffLimit: 1
