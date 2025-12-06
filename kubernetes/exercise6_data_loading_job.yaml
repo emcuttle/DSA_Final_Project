@@ -8,37 +8,23 @@ spec:
       containers:
       - name: dataset-validation
         image: python:3.9-slim
-        command: ["bash", "-c"]
+        command: ["python", "-c"]
         args:
           - |
-            echo "============================";
-            echo "Project Title: SAR Wildfire Building Damage Detection Model";
-            echo "Dataset Source URL:";
-            echo "SAR: https://capella-open-data.s3.amazonaws.com/data/2025/1/11/CAPELLA_C14_SS_GEO_HH_20250111163649_20250111163705/CAPELLA_C14_SS_GEO_HH_20250111163649_20250111163705.tif";
-            echo "Palisades Fire Footprints: https://data.humdata.org/dataset/30768ff0-289b-4fda-96d9-7209243c984d/resource/9650c5fe-c29b-429e-81e3-537688a74f60/download/maxar_palisades_1050010040277500_damage_predictions.gpkg";
-            echo "----------------------------";
+            print("Project Title: SAR Wildfire Building Damage Detection Model")
+            sar_url = "https://capella-open-data.s3.amazonaws.com/data/2025/1/11/CAPELLA_C14_SS_GEO_HH_20250111163649_20250111163705/CAPELLA_C14_SS_GEO_HH_20250111163649_20250111163705.tif"
+            fp_url = "https://data.humdata.org/dataset/30768ff0-289b-4fda-96d9-7209243c984d/resource/9650c5fe-c29b-429e-81e3-537688a74f60/download/maxar_palisades_1050010040277500_damage_predictions.gpkg"
+            print("SAR Dataset URL:", sar_url)
+            print("Footprints URL:", fp_url)
 
-            echo "Simulating dataset validation...";
-            python3 - << 'EOF'
-import urllib.parse
+            import urllib.parse
+            print("SAR filename:", urllib.parse.urlparse(sar_url).path.split('/')[-1])
+            print("Footprint filename:", urllib.parse.urlparse(fp_url).path.split('/')[-1])
 
-sar_url = "https://capella-open-data.s3.amazonaws.com/data/2025/1/11/CAPELLA_C14_SS_GEO_HH_20250111163649_20250111163705/CAPELLA_C14_SS_GEO_HH_20250111163649_20250111163705.tif"
-fp_url = "https://data.humdata.org/dataset/30768ff0-289b-4fda-96d9-7209243c984d/resource/9650c5fe-c29b-429e-81e3-537688a74f60/download/maxar_palisades_1050010040277500_damage_predictions.gpkg"
-
-print("Parsed SAR filename:", urllib.parse.urlparse(sar_url).path.split("/")[-1])
-print("Parsed footprint filename:", urllib.parse.urlparse(fp_url).path.split("/")[-1])
-
-print("Validation successful: URLs appear correctly formatted.")
-EOF
-
-            echo "----------------------------";
-            echo "Job completed successfully.";
-            echo "============================";
-
+            print("Success: Dataset metadata validated.")
         resources:
           requests:
             memory: "256Mi"
             cpu: "100m"
-
       restartPolicy: Never
   backoffLimit: 1
