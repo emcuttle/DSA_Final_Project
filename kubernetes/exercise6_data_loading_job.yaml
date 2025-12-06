@@ -24,10 +24,10 @@ spec:
             print("Success: Dataset metadata validated.")
         resources:
           requests:
-            memory: "128Mi"
-            cpu: "100m"
+            memory: "50Mi"
+            cpu: "50m"
           limits:
-            memory: "256Mi"
-            cpu: "200m"
+            memory: "50Mi"
+            cpu: "50m"
       restartPolicy: Never
   backoffLimit: 1
