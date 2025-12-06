@@ -9,4 +9,4 @@ It prints the dataset URLs, extracts the filenames, and confirms that the inputs
 
 To run the job in Nautilus:
 ```bash
-kubectl apply -f Module6A/exercise6/job.yaml
+kubectl apply -f exercise6_data_loading_job.yaml
