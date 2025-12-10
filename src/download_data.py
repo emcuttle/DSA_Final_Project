@@ -27,7 +27,6 @@ LAHAINA_SAR_URL = (
     "CAPELLA_C06_SP_GEO_HH_20230812045610_20230812045634.tif"
 )
 
-# Lahaina ArcGIS FeatureServer
 LAHAINA_FOOTPRINTS_URL = (
     "https://services1.arcgis.com/uujCiiEZAflDbdxE/arcgis/rest/services/"
     "InferencedBuildingDamage/FeatureServer/2/query"
@@ -35,6 +34,7 @@ LAHAINA_FOOTPRINTS_URL = (
 
 
 def download_palisades_data():
+    # download Palisades building footprint data
     palisades_gpkg = os.path.join(RAW_DIR, "maxar_palisades_damage.gpkg")
     download_file(PALISADES_FOOTPRINTS_URL, palisades_gpkg)
 
@@ -55,7 +55,7 @@ def download_palisades_data():
 
 
 def download_lahaina_data():
-    # Download Lahaina building footprints
+    # download Lahaina building footprint data
     import geopandas as gpd
     import requests
 
@@ -64,7 +64,6 @@ def download_lahaina_data():
     offset = 0
     page_size = 2000
 
-    # First get total count
     count_params = {"where": "1=1", "returnCountOnly": "true", "f": "json"}
     r = requests.get(LAHAINA_FOOTPRINTS_URL, params=count_params)
     r.raise_for_status()
