@@ -4,8 +4,8 @@ metadata:
   name: ecc7r-pv
 spec:
   accessModes:
-    - ReadWriteOnce
-  storageClassName: rook-ceph-block
+    - ReadWriteMany
+  storageClassName: rook-cephfs
   resources:
     requests:
       storage: 20Gi
