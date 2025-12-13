@@ -47,7 +47,7 @@ def compute_classification_metrics(metrics, model):
 
 
 def main():
-    dataset_dir = os.path.join(DATASETS_DIR, "building_dataset")
+    dataset_dir = os.environ.get("DATASET_DIR", "/data/datasets/palisades_building_dataset")
     if not os.path.isdir(dataset_dir):
         raise FileNotFoundError(dataset_dir)
 
