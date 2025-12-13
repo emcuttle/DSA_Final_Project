@@ -4,6 +4,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 ENV TZ=Etc/UTC
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
+    git \
     gdal-bin \
     libgdal-dev \
     proj-bin \
