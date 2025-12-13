@@ -4,12 +4,13 @@ ENV DEBIAN_FRONTEND=noninteractive
 ENV TZ=Etc/UTC
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    git \
     gdal-bin \
     libgdal-dev \
     proj-bin \
     libproj-dev \
     libspatialindex-dev \
+    libgl1 \
+    libglib2.0-0 \
     build-essential \
     && rm -rf /var/lib/apt/lists/*
 
