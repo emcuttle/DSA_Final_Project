@@ -21,7 +21,7 @@ spec:
             memory: "16Gi"
           limits:
             cpu: "4"
-            memory: "20Gi"
+            memory: "19Gi"
       volumes:
       - name: project-pvc
         persistentVolumeClaim:
