@@ -18,10 +18,10 @@ spec:
         resources:
           requests:
             cpu: "1"
-            memory: "4Gi"
+            memory: "2Gi"
           limits:
-            cpu: "2"
-            memory: "8Gi"
+            cpu: "1.2"
+            memory: "2.4Gi"
       volumes:
       - name: project-pvc
         persistentVolumeClaim:
