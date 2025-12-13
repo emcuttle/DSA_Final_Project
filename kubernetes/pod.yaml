@@ -5,7 +5,7 @@ metadata:
 spec:
   automountServiceAccountToken: false
   containers:
-  - name: sar-debug
+  - name: ecc7r-sar-project-pod
     image: ghcr.io/emcuttle/sar-damage:latest
     tty: true
     stdin: true
