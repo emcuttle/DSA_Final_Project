@@ -12,6 +12,9 @@ spec:
         image: ghcr.io/emcuttle/sar-damage:latest
         imagePullPolicy: Always
         command: ["python", "src/train_model.py"]
+        env:
+          - name: DATASET_DIR
+            value: /data/datasets/palisades_building_dataset
         volumeMounts:
         - name: project-pvc
           mountPath: /data
