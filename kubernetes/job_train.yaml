@@ -17,8 +17,6 @@ spec:
         env:
           - name: DATASET_DIR
             value: /data/datasets/palisades_building_dataset
-          - name: CUDA_VISIBLE_DEVICES
-            value: "0"
 
         volumeMounts:
         - name: project-pvc
@@ -28,11 +26,11 @@ spec:
           requests:
             cpu: "4"
             memory: "16Gi"
-            nvidia.com/gpu: "1"
+            nvidia.com/gpu: "1"  
           limits:
             cpu: "4"
             memory: "19Gi"
-            nvidia.com/gpu: "1"
+            nvidia.com/gpu: "1"  
 
       volumes:
       - name: project-pvc
