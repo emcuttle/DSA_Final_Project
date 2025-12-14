@@ -1,1 +1,13 @@
-
+{
+  "model": "YOLOv8l-cls",
+  "dataset": "Palisades SAR Building Damage",
+  "epochs_completed": 33,
+  "early_stopping_patience": 10,
+  "best_epoch": 23,
+  "top1_accuracy": 0.861,
+  "top5_accuracy": 1.0,
+  "training_time_hours": 2.95,
+  "gpu": "NVIDIA RTX 2080 Ti",
+  "image_size": 256,
+  "batch_size": 8
+}
