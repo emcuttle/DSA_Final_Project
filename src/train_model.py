@@ -60,6 +60,7 @@ def main():
         imgsz=256,
         patience=10,
         batch=32,
+        workers=0,
         name="building_damage_classifier",
     )
 
