@@ -1,1 +1,32 @@
+Model Training started on Nautilus using a Kubernetes Job (job_train.yaml) with GPU acceleration.
 
+Dataset Information:
+- Train images: 25,932
+- Validation images: 5,556
+- Test images: 5,558
+- Classes: 2
+
+Model Information:
+- Architecture: YOLOv8l-cls
+- Parameters: ~36M
+- Image size: 256
+- Batch size: 8
+
+Training Information:
+Started training for 50 epochs.
+Used GPU device: CUDA:0
+
+Epoch 1/50 - loss ~0.59
+Epoch 23/50 - best performance observed & best model saved as best.pt.
+Epoch 33/50 - early stopping triggered - 33 epochs completed in 2.949 hours.
+
+Model Training Files:
+- best.pt saved 
+- best model copied to PVC. See path below:
+  /data/models/building_damage_classifier_best.pt
+
+Validation results (best model):
+- Top-1 Accuracy: 0.861
+- Top-5 Accuracy: 1.0
+
+The training job was completed successfully and the job/pods were deleted.
