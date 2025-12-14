@@ -7,24 +7,33 @@ spec:
     spec:
       automountServiceAccountToken: false
       restartPolicy: Never
+
       containers:
       - name: sar-train
         image: ghcr.io/emcuttle/sar-damage:latest
         imagePullPolicy: Always
         command: ["python", "src/train_model.py"]
+
         env:
           - name: DATASET_DIR
             value: /data/datasets/palisades_building_dataset
+          - name: CUDA_VISIBLE_DEVICES
+            value: "0"
+
         volumeMounts:
         - name: project-pvc
           mountPath: /data
+
         resources:
           requests:
             cpu: "4"
             memory: "16Gi"
+            nvidia.com/gpu: "1"
           limits:
             cpu: "4"
             memory: "19Gi"
+            nvidia.com/gpu: "1"
+
       volumes:
       - name: project-pvc
         persistentVolumeClaim:
