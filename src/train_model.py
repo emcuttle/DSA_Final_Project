@@ -65,16 +65,17 @@ def main():
     model = YOLO("yolov8l-cls.pt")
 
     results = model.train(
-        data=dataset_dir,
-        epochs=50,
-        imgsz=256,
-        patience=10,
-        batch=16,
-        device=0,      
-        workers=2,     
-        cache=False, 
-        name="building_damage_classifier",
-    )
+    data=dataset_dir,
+    epochs=50,
+    imgsz=256,
+    patience=10,
+    batch=8,
+    device=0,
+    workers=0,
+    cache=False,
+    plots=False,
+    name="building_damage_classifier",
+)
 
     logger.info("Training complete.")
 
