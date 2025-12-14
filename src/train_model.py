@@ -47,11 +47,21 @@ def compute_classification_metrics(metrics, model):
 
 
 def main():
-    dataset_dir = os.environ.get("DATASET_DIR", "/data/datasets/palisades_building_dataset")
+    logger.info("Starting training script")
+
+    dataset_dir = os.environ.get(
+        "DATASET_DIR",
+        "/data/datasets/palisades_building_dataset"
+    )
+
+    logger.info(f"Using dataset directory: {dataset_dir}")
+
     if not os.path.isdir(dataset_dir):
         raise FileNotFoundError(dataset_dir)
 
+    logger.info("Initializing YOLO model")
     logger.info("Training YOLOv8 classification model...")
+
     model = YOLO("yolov8l-cls.pt")
 
     results = model.train(
@@ -59,8 +69,10 @@ def main():
         epochs=50,
         imgsz=256,
         patience=10,
-        batch=32,
-        workers=0,
+        batch=16,
+        device=0,      
+        workers=2,     
+        cache=False, 
         name="building_damage_classifier",
     )
 
