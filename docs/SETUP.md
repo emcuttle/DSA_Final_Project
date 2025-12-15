@@ -73,7 +73,7 @@ kubectl apply -f kubernetes/job_train.yaml
 **Special Note:** Throughout steps 1 through 4 and after applying the Kubernetes
 Job YAML files, run the following commands to check the job status along the way.
 ```bash
-kubectl get pods # check that the pod is running correctly
-kubectl get jobs # check that the job is running
-kubectl logs -f job/job-name-here
+kubectl get pods # check the pod status
+kubectl get jobs # check the job status
+kubectl logs -f job/job-name-here # get job logs
 ```
