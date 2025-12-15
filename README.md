@@ -10,3 +10,6 @@ It prints the dataset URLs, extracts the filenames, and confirms that the inputs
 To run the job in Nautilus:
 ```bash
 kubectl apply -f exercise6_data_loading_job.yaml
+```
+
+**Special Note:** AI-assisted tools were used for code debugging and documentation drafting; all experiments and results were executed by the author.
