@@ -17,7 +17,7 @@ All datasets were accessed via URLs and downloaded into the Nautilus PVC.
 
 ### Palisades, California
 
-- **Building Damage Polygons**  
+- **Building Footprints**  
   Sourced from the Humanitarian Data Exchange (HDX), derived from Maxar Technologies
   damage predictions.  
   Format: GeoPackage (vector)  
@@ -30,7 +30,7 @@ All datasets were accessed via URLs and downloaded into the Nautilus PVC.
 
 ### Lahaina, Hawaii
 
-- **Building Damage Polygons**  
+- **Building Footprints**  
   Sourced from an ArcGIS Online hosted Feature Service (Esri) and accessed via the
   ArcGIS REST API.  
   Format: Vector feature service  
