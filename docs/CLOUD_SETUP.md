@@ -2,10 +2,10 @@
 
 ## Nautilus Cloud Platform Overview
 
-Cloud Platform: Nautilus
-Orchestration: Kubernetes
-Execution Model: Batch jobs
-Storage: PVC mounted at /data to ensure results exist after pod/job deletion
+- Cloud Platform: Nautilus
+- Orchestration: Kubernetes
+- Execution Model: Batch jobs
+- Storage: PVC mounted at /data to ensure results exist after pod/job deletion
 GPU Resources: NVIDIA GPUs allocated via Kubernetes resource requests
 
 ## Docker Image Information
