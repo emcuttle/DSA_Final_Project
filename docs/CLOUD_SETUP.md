@@ -21,6 +21,7 @@ gp-engine-mizzou-dsa-cloud
 
 ## GPU Configuration
 From job_train.yaml - 
+```bash
 resources:
   requests:
     cpu: "4"
@@ -28,5 +29,6 @@ resources:
     nvidia.com/gpu: "1"
   limits:
     cpu: "4"
+```bash
     memory: "19Gi"
     nvidia.com/gpu: "1"
