@@ -29,6 +29,6 @@ resources:
     nvidia.com/gpu: "1"
   limits:
     cpu: "4"
-```bash
     memory: "19Gi"
     nvidia.com/gpu: "1"
+```
