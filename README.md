@@ -20,18 +20,26 @@ REST API. These datasets were programmatically downloaded via a Kubernetes job a
 volumne claim (PVC) on Nautilus under /data/raw.
 
 ## How to Execute the Project on Nautilus
-### Nautilus Account & PVC/data setup:
-1. Change into the project folder/directory within Nautilus.
+Nautilus was accessed through University of Missouri System credentials and the “Stack Datascience + K8s” 
+server option was selected. The namespace used for this project was gp-engine-mizzou-dsa-cloud. A persistent 
+volume claim (PVC) was applied to the cluster through the command `kubectl apply -f kubernetes/pvc.yaml`. 
+The created PVC was then referenced in Kubernetes jobs and pod creation YAML files. This essentially mounted 
+the PVC at /data to use for persistent storage throughout the project.
+
+### Creating the PVC & Cloning the GitHub Repo:
+1. In a Nautilus terminal, create the top-level project folder/directory.
 ```
+mkdir project_folder_name
 cd project_folder_name
 ```
-2. In order to use the files in this repo, fork the GitHub repo via GitHub UI by navigating to this repo, 
-   i.e. https://github.com/emcuttle/DSA_Final_Project 
+2. In order to use the files in this repo, fork this GitHub repo via GitHub UI by navigating to this repo 
+   at https://github.com/emcuttle/DSA_Final_Project 
   - Click Fork and choose your account
 3. Execute either of the following commands within the Nautilus terminal
   - For SSH: git clone git@github.com:<your-username>/<forked-repo>.git
-  - For HTTPS: git clone https://github.com/<your-username>/<forked-repo>.git 
-3. Create a PVC and apply it to the cluster via the pvc.yaml file in the repo
+  - For HTTPS: git clone https://github.com/<your-username>/<forked-repo>.git
+   The GitHub repo should now be cloned within the Nautilus file browser on the lefthand side.
+3. Create a PVC and apply it to the cluster by running pvc.yaml in the terminal
 ```
 kubectl apply -f kubernetes/pvc.yaml
 ```
@@ -39,16 +47,18 @@ kubectl apply -f kubernetes/pvc.yaml
 ```
 kubectl -n gp-engine-mizzou-dsa-cloud create -f pod.yml
 ```
-5. Move into the running pod:
+5. Exec into the running pod:
 ```
 kubectl -n gp-engine-mizzou-dsa-cloud exec -it ecc7r-sar-project-pod-- /bin/bash
 ```
-6. Create the directory/folder where you want the data to go and then move into it
+6. Create the directory/folder where you want the data to go within the mounted PVC on the pod and
+   then move into it
 ```
 mkdir project_folder_name
 cd project_folder_name
 ```
-7. Clone the git repo into the mounted PVC within that is now accessible within the pod
+7. Clone the git repo into the mounted PVC within that is accessible through the pod. The repo
+   should now be accessible within the pod.
 ```
 git clone https://github.com/emcuttle/DSA_Final_Project
 ```
@@ -59,12 +69,12 @@ kubectl delete pod ecc7r-sar-project-pod -n gp-engine-mizzou-dsa-cloud
 ```
 
 ### Execute Kubernetes Jobs
-Execute Kubernetes Jobs in this sequence:
+Execute Kubernetes Jobs in the Nautilus terminal in this sequence:
     1. job-download.yaml
     2. job_preprocess.yaml
     3. job_train.yaml
 Execute the following commands for every job:
-  1. Change into the project folder/directory within Nautilus.
+  1. Ensure you are in the project folder/directory within Nautilus. If not:
      ```
      cd project_folder_name
      ```
@@ -72,14 +82,14 @@ Execute the following commands for every job:
      ```
      kubectl apply -f kubernetes/job_file_name.yaml
      ```
-  3. Check the status of the job: Running means the job is in progress, Failed indicates an error,
-     and Complete means the job was completed.
+  3. Check the status of the job: **Running** means the job is in progress, **Failed** indicates an error,
+     and **Complete** means the job was completed.
      ```
      kubectl get jobs
      ```
-  4. Check the status of the pod: ContainerCreating means the container for the job is currently being
-     created, Running means the container has been successfully created and the job is in progress, Error
-     indicates an error, and Completed means the job was completed.
+  4. Check the status of the pod: **ContainerCreating** means the container for the job is currently being
+     created, **Running** means the container has been successfully created and the job is in progress, **Error**
+     indicates an error, and **Completed** means the job was completed.
      ```
      kubectl get pods
      ```
@@ -87,7 +97,7 @@ Execute the following commands for every job:
      ```
      kubectl logs -f job/job/pod-name
      ```
-  6. Once the status of the Job is “Complete”, delete the job.
+  6. Once the status of the Job is **Complete**, delete the job.
      ```
      kubectl delete job sar-train-job
      ```
