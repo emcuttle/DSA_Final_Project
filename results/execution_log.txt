@@ -8,8 +8,6 @@ Dataset Information:
 
 Model Information:
 - Architecture: YOLOv8l-cls
-- Parameters: ~36M
-- Image size: 256
 - Batch size: 8
 
 Training Information:
