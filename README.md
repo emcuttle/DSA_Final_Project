@@ -16,8 +16,8 @@ wildfire imagery was sourced from Capella Space Open Data, which is an open-sour
 providing high-resolution SAR imagery. Building footprint data for the Palisades, CA area was sourced 
 from Humanitarian Data Exchange and derived from Maxar Technologies. Building footprint data for the 
 Lahaina, HI area was sourced from the ArcGIS Online hosted Feature Service and accessed via the ArcGIS 
-REST API. These datasets were programmatically downloaded via a Kubernetes job and stored on the PVC 
-under /data/raw.
+REST API. These datasets were programmatically downloaded via a Kubernetes job and stored on the persistent
+volumne claim (PVC) on Nautilus under /data/raw.
 
 ## How to Execute the Project on Nautilus
 ### Nautilus Account & PVC/data setup:
