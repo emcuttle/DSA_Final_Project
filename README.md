@@ -5,6 +5,20 @@ All python code files were created by Emily Cuttle, Will Lopez, Nic Alfaro, & Al
 as the final case study and capstone projects for the Data Science & Analytics Master's Program at 
 the University of Missouri.
 
+## Project Usage
+The model trained in this project is intended to be used for building damage detection following
+wildfire natural disaster events. It is intended to be used as a means for first responders to 
+obtain rapid, building-level damage assessment in order to facilitate search and rescue operations.
+
+## Dataset Information
+Two wildfire events were used in this project, the Palisades Fire and the Lahaina fire. All SAR 
+wildfire imagery was sourced from Capella Space Open Data, which is an open-source platform 
+providing high-resolution SAR imagery. Building footprint data for the Palisades, CA area was sourced 
+from Humanitarian Data Exchange and derived from Maxar Technologies. Building footprint data for the 
+Lahaina, HI area was sourced from the ArcGIS Online hosted Feature Service and accessed via the ArcGIS 
+REST API. These datasets were programmatically downloaded via a Kubernetes job and stored on the PVC 
+under /data/raw.
+
 ## How to Execute the Project on Nautilus
 ### Nautilus Account & PVC/data setup:
 1. Change into the project folder/directory within Nautilus.
@@ -32,7 +46,7 @@ kubectl -n gp-engine-mizzou-dsa-cloud exec -it ecc7r-sar-project-pod-- /bin/bash
 6. Create the directory/folder where you want the data to go and then move into it
 ```
 mkdir project_folder_name
-cd project1_folder_name
+cd project_folder_name
 ```
 7. Clone the git repo into the mounted PVC within that is now accessible within the pod
 ```
@@ -52,7 +66,7 @@ Execute Kubernetes Jobs in this sequence:
 Execute the following commands for every job:
   1. Change into the project folder/directory within Nautilus.
      ```
-     cd project1
+     cd project_folder_name
      ```
   2. Create the Kubernetes job using the YAML file.
      ```
@@ -61,8 +75,8 @@ Execute the following commands for every job:
   3. Check the status of the job: Running means the job is in progress, Failed indicates an error,
      and Complete means the job was completed.
      ```
-    kubectl get jobs
-    ```
+     kubectl get jobs
+     ```
   4. Check the status of the pod: ContainerCreating means the container for the job is currently being
      created, Running means the container has been successfully created and the job is in progress, Error
      indicates an error, and Completed means the job was completed.
@@ -78,9 +92,10 @@ Execute the following commands for every job:
      kubectl delete job sar-train-job
      ```
 
-# Exercise 6 – Validating Data Source URLs - Kubernetes Job
+## Exercise 6 – Validating Data Source URLs - Kubernetes Job
 
-This Kubernetes Job performs validation of dataset URLs for my final project, SAR Wildfire Building Damage Detection Model. 
+This Kubernetes Job was written as part of the Module 6 Exercise assignment and is not used in the final
+project. It performs validation of dataset URLs for my final project, SAR Wildfire Building Damage Detection Model. 
 It prints the dataset URLs, extracts the filenames, and confirms that the inputs are correctly formatted.
 
 To run the job in Nautilus:
