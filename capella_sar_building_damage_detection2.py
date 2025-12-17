@@ -1,3 +1,5 @@
+# This is the original source code that the src files are derived from. The following source code was created in Google CoLab.
+
 # -*- coding: utf-8 -*-
 """capella_sar_building_damage_detection2.ipynb
 
