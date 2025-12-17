@@ -32,7 +32,7 @@ and assistance with debugging Nautilus errors.
 This workflow provides a clear narrative from raw data to an operational product and aligns well with cloud-based execution requirements.
 
 2.	When running deep learning workloads on Nautilus, your Kubernetes job YAML should clearly define resource requests, limits, and execution
-3.	behavior. Some best practices to consider include:
+   behavior. Some best practices to consider include:
   a.	Explicit resource requests and limits: Always specify CPU, memory, and GPU requests to avoid over-allocation or scheduling delays. For example,
 request only the number of GPUs required by your model and ensure memory limits are sufficient for loading SAR imagery.
   b.	Use batch jobs for training: A Kubernetes Job is appropriate for training and inference tasks that run to completion. Set restartPolicy:
